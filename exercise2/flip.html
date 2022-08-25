@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+        }
+        .letter {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            border: 1px solid black;
+            padding: 1em;
+            margin: 2px;
+            justify-content: center;
+            align-items: center;
+            background-color: silver;
+        }
+    </style>
+</head>
+<body>
+    <span class="letter" id="l1"><div>B</div></span>
+    <span class="letter" id="l2"><div>A</div></span>
+    <span class="letter" id="l3"><div>S</div></span>
+    <span class="letter" id="l4"><div>I</div></span>
+    <span class="letter" id="l5"><div>C</div></span>
+    <script>
+const letterTumbling = [{transform: 'scale(1)' }, 
+                        {transform: 'scaleY(0)', backgroundColor: 'silver', offset: .5}, 
+                        {transform: 'scaleY(0)', backgroundColor: 'lightgreen', offset: .5},
+                        {transform: 'scaleY(1)', backgroundColor: 'lightgreen'}];
+const letterTiming = { duration: 2000, iteration: 1, fill: 'forwards' };
+
+const letter1 = document.getElementById("l1");
+const letter2 = document.getElementById("l2");
+const letter3 = document.getElementById("l3");
+const letter4 = document.getElementById("l4");
+const letter5 = document.getElementById("l5");
+
+letter1.animate(letterTumbling, letterTiming)
+.finished
+.then( () => {
+    return letter2.animate(letterTumbling, letterTiming).finished;
+})
+.then( () => {
+    return letter3.animate(letterTumbling, letterTiming).finished;
+})
+.then( () => {
+    return letter4.animate(letterTumbling, letterTiming).finished;
+})
+.then( () => {
+    return letter5.animate(letterTumbling, letterTiming).finished;
+});
+
+
+console.log('done');
+    </script>
+</body>
+</html>
